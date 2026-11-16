@@ -48,16 +48,16 @@
   <section class="hero lp-hero">
     <div class="wrap hero__grid">
       <div class="hero__copy">
-        <span class="lp-badge"><span class="lp-badge__dot" aria-hidden="true"></span>v1.1.0 · 稳定版已发布</span>
-        <p class="lp-v11">本次更新：商品「已知不足」可后台逐件填写 · 分类标签与首页文案后台改了前台即时生效 · 系统包精简至 0.6 MB</p>
+        <span class="lp-badge"><span class="lp-badge__dot" aria-hidden="true"></span>v1.2.0 · 稳定版已发布</span>
+        <p class="lp-v11">本次更新：用户中心新增「控制台」可改魔方账号用户名/密码 · 后台可直接上传主题与插件 · 干净安装默认 0 分类 0 商品</p>
 
         <h1 class="display">一套装好就能用的<br><em>轻量商城系统</em></h1>
 
         <p class="lede">基于 PHP + SQLite，单文件数据库、无需 MySQL。内置「欲蓝财务魔方」产品类型，支持每个商品独立配置服务器，下单后由 Windows APP 自动建号并交付账号。从部署到排障，21 页文档全程覆盖。</p>
 
         <div class="lp-hero__actions">
-          <a class="btn btn--primary" href="https://github.com/yulancloud/yulancloud/releases/download/v1.1.0/yulan-shop.zip">
-            下载系统包 v1.1.0
+          <a class="btn btn--primary" href="https://github.com/yulancloud/yulancloud/releases/download/v1.2.0/yulan-shop.zip">
+            下载系统包 v1.2.0
             <svg class="ico" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 4v11M7.5 10.5 12 15l4.5-4.5M5 19h14"/></svg>
           </a>
           <a class="btn btn--ghost" href="https://doc.yulancloud.us.ci/" target="_blank" rel="noopener">
@@ -102,7 +102,7 @@
   <section class="section--tight">
     <div class="wrap">
       <div class="lp-stats">
-        <div class="lp-stat"><div class="lp-stat__v">v1.1.0</div><div class="lp-stat__k">当前稳定版本</div></div>
+        <div class="lp-stat"><div class="lp-stat__v">v1.2.0</div><div class="lp-stat__k">当前稳定版本</div></div>
         <div class="lp-stat"><div class="lp-stat__v">3 类</div><div class="lp-stat__k">实体 / 虚拟 / 欲蓝魔方商品</div></div>
         <div class="lp-stat"><div class="lp-stat__v">64 项</div><div class="lp-stat__k">端到端测试断言</div></div>
         <div class="lp-stat"><div class="lp-stat__v">21 页</div><div class="lp-stat__k">部署 / 后台 / 排障文档</div></div>
@@ -163,6 +163,20 @@
           <p>全站参数化查询、CSRF 同源校验、会话只存令牌哈希、用户输入统一转义。<code>/api/health</code> 可校验版本号，迁移脚本幂等且能自动修复旧库。</p>
           <span class="lp-feat__tag">无高危漏洞 · 健康检查</span>
         </article>
+
+        <article class="lp-feat">
+          <span class="lp-feat__ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="4" width="18" height="16" rx="2"/><path d="M3 9h18M8 13h4M8 16.5h7"/></svg></span>
+          <h3 class="h3">用户控制台（v1.2 新增）</h3>
+          <p>用户中心多出一个控制台，展示「我的欲蓝魔方商品」。进入详情即可修改登录用户名与密码，由管理员令牌下发到 Windows APP 强制改号，口令不落库、不进日志明文。</p>
+          <span class="lp-feat__tag">改用户名 / 密码 · 审计留痕</span>
+        </article>
+
+        <article class="lp-feat">
+          <span class="lp-feat__ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 3 3 7.5l9 4.5 9-4.5L12 3zM3 12l9 4.5 9-4.5M3 16.5 12 21l9-4.5"/></svg></span>
+          <h3 class="h3">主题 / 插件上传（v1.2 新增）</h3>
+          <p>后台上传一个 zip 就能换主题、装插件，支持启用、停用与卸载。主题只覆盖 CSS 变量，升级不丢；插件零侵入、不建表。也可到插件市场下载分享。</p>
+          <span class="lp-feat__tag">后台上传 · 免改核心文件</span>
+        </article>
       </div>
     </div>
   </section>
@@ -222,23 +236,23 @@
 
       <div class="lp-cards">
         <article class="lp-card">
-          <div class="lp-card__k">MAIN SYSTEM · v1.1.0</div>
+          <div class="lp-card__k">MAIN SYSTEM · v1.2.0</div>
           <h3>欲蓝财务商城系统包</h3>
-          <p>完整 PHP + SQLite 商城源码，含欲蓝财务魔方产品类型、商品级服务器、后台管理与端到端测试。v1.1 起商品「已知不足」与分类标签、首页文案均可在后台直接配置，覆盖上传即可部署。</p>
+          <p>完整 PHP + SQLite 商城源码，含欲蓝财务魔方产品类型、商品级服务器、后台管理与端到端测试。v1.2 新增用户「控制台」（可改魔方账号用户名/密码）与后台主题/插件上传，干净安装默认 0 分类 0 商品。</p>
           <div class="lp-card__meta"><span>yulan-shop.zip</span><span>约 0.6 MB</span><span>PHP 8.3</span><span>含 Nginx 配置样例</span></div>
           <div class="lp-card__actions">
-            <a class="btn btn--primary" href="https://github.com/yulancloud/yulancloud/releases/download/v1.1.0/yulan-shop.zip">下载 ZIP <svg class="ico" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 4v11M7.5 10.5 12 15l4.5-4.5M5 19h14"/></svg></a>
-            <a class="btn btn--ghost" href="https://github.com/yulancloud/yulancloud/releases/tag/v1.1.0" target="_blank" rel="noopener">Release 说明</a>
+            <a class="btn btn--primary" href="https://github.com/yulancloud/yulancloud/releases/download/v1.2.0/yulan-shop.zip">下载 ZIP <svg class="ico" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 4v11M7.5 10.5 12 15l4.5-4.5M5 19h14"/></svg></a>
+            <a class="btn btn--ghost" href="https://github.com/yulancloud/yulancloud/releases/tag/v1.2.0" target="_blank" rel="noopener">Release 说明</a>
           </div>
         </article>
 
         <article class="lp-card">
-          <div class="lp-card__k">WINDOWS APP · v1.0</div>
+          <div class="lp-card__k">WINDOWS APP · v1.2</div>
           <h3>欲蓝财务魔方 Windows APP</h3>
-          <p>Go 编译的单文件 exe，无需安装 Python 或任何运行时。仅管理员可运行、日志 ACL 隔离、自动 UAC 提权，配置好令牌即可接收建号请求。</p>
+          <p>Go 编译的单文件 exe，无需安装 Python 或任何运行时。仅管理员可运行、日志 ACL 隔离、自动 UAC 提权；v1.2 新增管理员强制改用户名/密码，配合商城控制台改号。</p>
           <div class="lp-card__meta"><span>yulan_cube_app.exe</span><span>约 6.4 MB</span><span>Windows x64</span><span>免环境</span></div>
           <div class="lp-card__actions">
-            <a class="btn btn--primary" href="https://github.com/yulancloud/yulancloudRubik-Windows/releases/download/v1.0/yulan_cube_app.exe">下载 EXE <svg class="ico" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 4v11M7.5 10.5 12 15l4.5-4.5M5 19h14"/></svg></a>
+            <a class="btn btn--primary" href="https://github.com/yulancloud/yulancloudRubik-Windows/releases/download/v1.2/yulan_cube_app.exe">下载 EXE <svg class="ico" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 4v11M7.5 10.5 12 15l4.5-4.5M5 19h14"/></svg></a>
             <a class="btn btn--ghost" href="https://github.com/yulancloud/yulancloudRubik-Windows" target="_blank" rel="noopener">APP 仓库</a>
           </div>
         </article>
@@ -305,7 +319,7 @@
         </a>
         <p style="margin:16px 0 0;font-size:13px;color:var(--ink-3);line-height:1.85;max-width:320px">基于 PHP + SQLite 的轻量商城系统，内置欲蓝财务魔方产品类型与商品级服务器配置。</p>
         <div class="lp-foot-cta">
-          <a class="btn btn--sm btn--primary" href="https://github.com/yulancloud/yulancloud/releases/download/v1.1.0/yulan-shop.zip">下载系统包</a>
+          <a class="btn btn--sm btn--primary" href="https://github.com/yulancloud/yulancloud/releases/download/v1.2.0/yulan-shop.zip">下载系统包</a>
           <a class="btn btn--sm btn--ghost" href="https://doc.yulancloud.us.ci/" target="_blank" rel="noopener">文档站</a>
         </div>
       </div>
@@ -325,7 +339,7 @@
           <a href="https://github.com/yulancloud/yulancloud" target="_blank" rel="noopener">主仓库 · 系统源码与系统包</a>
           <a href="https://github.com/yulancloud/yulancloudRubik-Windows" target="_blank" rel="noopener">Windows APP · exe 下载</a>
           <a href="https://github.com/yulancloud/doc" target="_blank" rel="noopener">文档站源码</a>
-          <a href="https://github.com/yulancloud/yulancloud/releases/tag/v1.1.0" target="_blank" rel="noopener">v1.1.0 Release</a>
+          <a href="https://github.com/yulancloud/yulancloud/releases/tag/v1.2.0" target="_blank" rel="noopener">v1.2.0 Release</a>
         </div>
       </div>
     </div>

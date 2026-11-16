@@ -1,0 +1,382 @@
+<!DOCTYPE html>
+<html lang="zh-CN" data-theme="light">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="theme-color" content="#f5f6f8">
+<title>插件市场 · 欲蓝财务</title>
+<meta name="description" content="欲蓝财务插件市场：下载、安装、上传插件。插件本体托管在 GitHub，基于开发者「功能自定义」教程打包，附小白安装教程。">
+<link rel="icon" href="../assets/favicon.svg" type="image/svg+xml">
+<link rel="stylesheet" href="../assets/style.css">
+<link rel="stylesheet" href="../assets/home.css">
+<style>
+  .mk-wrap { max-width: var(--max); margin: 0 auto; padding: 0 var(--gutter); }
+  .mk-hero { padding: clamp(48px, 8vw, 92px) 0 clamp(28px, 4vw, 44px); }
+  .mk-eyebrow { display: inline-flex; align-items: center; gap: 8px; font-size: 12px; font-weight: var(--w-semi);
+    letter-spacing: .12em; text-transform: uppercase; color: var(--accent-ink); margin-bottom: 18px; }
+  .mk-eyebrow::before { content: ''; width: 22px; height: 2px; background: var(--accent); border-radius: 2px; }
+  .mk-hero h1 { font-size: clamp(32px, 6vw, 56px); line-height: 1.14; letter-spacing: -.035em; margin: 0 0 16px; font-weight: var(--w-strong); }
+  .mk-hero h1 em { font-style: normal; color: var(--accent); }
+  .mk-hero p { max-width: 660px; font-size: clamp(15px, 1.6vw, 17px); color: var(--ink-2); margin: 0 0 30px; }
+  .mk-hero__actions { display: flex; flex-wrap: wrap; gap: 12px; align-items: center; }
+  .mk-btn { display: inline-flex; align-items: center; justify-content: center; gap: 8px;
+    padding: 12px 22px; border-radius: var(--r-sm); font-size: 14px; font-weight: var(--w-semi);
+    text-decoration: none; cursor: pointer; border: 1px solid transparent; transition: transform .2s var(--ease), box-shadow .2s var(--ease); }
+  .mk-btn:hover { transform: translateY(-2px); }
+  .mk-btn--primary { background: var(--accent); color: #fff; box-shadow: var(--sh-2); }
+  .mk-btn--ghost { background: var(--surface-2); color: var(--ink-1); border-color: var(--hair-2); }
+  .mk-btn svg { width: 16px; height: 16px; fill: none; stroke: currentColor; stroke-width: 1.9; stroke-linecap: round; stroke-linejoin: round; }
+
+  .mk-toolbar { display: flex; flex-wrap: wrap; gap: 14px; align-items: center; justify-content: space-between;
+    padding: 18px 0 22px; border-top: 1px solid var(--hair); border-bottom: 1px solid var(--hair); }
+  .mk-search { position: relative; flex: 1 1 280px; max-width: 380px; }
+  .mk-search input { width: 100%; padding: 11px 14px 11px 38px; font-size: 14px; font-family: inherit;
+    color: var(--ink-1); background: var(--surface-2); border: 1px solid var(--hair-2);
+    border-radius: var(--r-sm); outline: none; transition: border-color .2s, box-shadow .2s; }
+  .mk-search input:focus { border-color: var(--accent); box-shadow: 0 0 0 3px var(--accent-soft); }
+  .mk-search svg { position: absolute; left: 13px; top: 50%; transform: translateY(-50%); width: 16px; height: 16px;
+    fill: none; stroke: var(--ink-3); stroke-width: 2; }
+  .mk-chips { display: flex; flex-wrap: wrap; gap: 8px; }
+  .mk-chip { padding: 7px 14px; font-size: 13px; border-radius: 999px; cursor: pointer;
+    background: var(--surface-2); color: var(--ink-2); border: 1px solid var(--hair-2); font-family: inherit;
+    transition: all .18s var(--ease); }
+  .mk-chip:hover { color: var(--accent-ink); border-color: var(--accent); }
+  .mk-chip.is-on { background: var(--accent); border-color: var(--accent); color: #fff; font-weight: var(--w-semi); }
+  .mk-meta { display: flex; flex-wrap: wrap; gap: 18px; align-items: center; padding: 16px 0 26px;
+    font-size: 13px; color: var(--ink-3); }
+  .mk-meta strong { color: var(--ink-1); font-weight: var(--w-semi); }
+
+  .mk-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(310px, 1fr)); gap: 18px; padding-bottom: 20px; }
+  .mk-card { display: flex; flex-direction: column; background: var(--surface-2); border: 1px solid var(--hair);
+    border-radius: var(--r-md); box-shadow: var(--sh-1); padding: 22px; transition: transform .25s var(--ease), box-shadow .25s var(--ease), border-color .25s; }
+  .mk-card:hover { transform: translateY(-3px); box-shadow: var(--sh-2); border-color: var(--hair-3); }
+  .mk-card__top { display: flex; gap: 14px; align-items: flex-start; }
+  .mk-card__icon { flex: 0 0 48px; width: 48px; height: 48px; border-radius: var(--r-sm);
+    background: var(--accent-soft); display: grid; place-items: center; overflow: hidden;
+    color: var(--accent-ink); font-weight: var(--w-strong); font-size: 20px; }
+  .mk-card__icon img { width: 100%; height: 100%; object-fit: contain; }
+  .mk-card__title { font-size: 17px; font-weight: var(--w-semi); letter-spacing: -.01em; margin: 1px 0 4px; }
+  .mk-card__by { font-size: 12px; color: var(--ink-3); }
+  .mk-badge { display: inline-flex; align-items: center; gap: 4px; font-size: 11px; font-weight: var(--w-semi);
+    color: var(--accent-ink); background: var(--accent-soft); border-radius: 5px; padding: 2px 7px; margin-left: 6px; vertical-align: 2px; }
+  .mk-badge--hot { color: var(--warm); background: color-mix(in srgb, var(--warm) 12%, transparent); }
+  .mk-card__desc { font-size: 13.5px; color: var(--ink-2); line-height: 1.75; margin: 16px 0 14px; flex: 1; }
+  .mk-tags { display: flex; flex-wrap: wrap; gap: 6px; margin-bottom: 18px; }
+  .mk-tag { font-size: 11px; color: var(--ink-3); background: var(--surface-3); border-radius: 5px; padding: 3px 8px; }
+  .mk-card__foot { display: flex; align-items: center; justify-content: space-between; gap: 10px;
+    padding-top: 16px; border-top: 1px solid var(--hair); font-size: 12px; color: var(--ink-3); }
+  .mk-card__links { display: flex; gap: 8px; margin-top: 14px; }
+  .mk-card__links a { flex: 1; text-align: center; padding: 9px 10px; border-radius: var(--r-xs); font-size: 13px;
+    font-weight: var(--w-semi); text-decoration: none; }
+  .mk-card__links a.dl { background: var(--accent); color: #fff; }
+  .mk-card__links a.dl:hover { filter: brightness(1.08); }
+  .mk-card__links a.doc { background: var(--surface-3); color: var(--ink-1); }
+  .mk-card__links a.doc:hover { background: var(--surface-4); }
+
+  .mk-empty { grid-column: 1 / -1; text-align: center; padding: 64px 20px; color: var(--ink-3); }
+  .mk-empty h3 { color: var(--ink-1); font-size: 18px; margin: 0 0 8px; }
+  .mk-note { margin: 8px 0 0; padding: 12px 16px; border-radius: var(--r-sm); font-size: 13px;
+    background: var(--surface-1); border: 1px dashed var(--hair-2); color: var(--ink-2); }
+
+  .mk-sec { padding: clamp(44px, 7vw, 76px) 0; border-top: 1px solid var(--hair); }
+  .mk-sec__head { margin-bottom: 30px; }
+  .mk-sec__head h2 { font-size: clamp(23px, 3.4vw, 32px); letter-spacing: -.025em; margin: 0 0 10px; }
+  .mk-sec__head p { color: var(--ink-2); margin: 0; max-width: 680px; }
+  .mk-steps { display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 16px; }
+  .mk-step { background: var(--surface-2); border: 1px solid var(--hair); border-radius: var(--r-md); padding: 24px; }
+  .mk-step__n { display: grid; place-items: center; width: 30px; height: 30px; border-radius: 9px;
+    background: var(--accent-soft); color: var(--accent-ink); font-weight: var(--w-strong); font-size: 14px; margin-bottom: 14px; }
+  .mk-step h3 { font-size: 15px; margin: 0 0 8px; }
+  .mk-step p { font-size: 13px; color: var(--ink-2); margin: 0 0 12px; line-height: 1.75; }
+  .mk-step a { font-size: 13px; color: var(--accent-ink); text-decoration: none; font-weight: var(--w-semi); }
+  .mk-step a:hover { text-decoration: underline; }
+  .mk-faq { display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 16px; }
+  .mk-faq div { padding: 20px; border-radius: var(--r-md); background: var(--surface-1); border: 1px solid var(--hair); }
+  .mk-faq h3 { font-size: 14px; margin: 0 0 8px; }
+  .mk-faq p { font-size: 13px; color: var(--ink-2); margin: 0; line-height: 1.75; }
+  .mk-faq a { color: var(--accent-ink); }
+  .mk-foot { border-top: 1px solid var(--hair); padding: 26px 0 40px; font-size: 13px; color: var(--ink-3); }
+  .mk-foot__row { display: flex; flex-wrap: wrap; gap: 18px; align-items: center; }
+  .mk-foot a { color: var(--ink-2); text-decoration: none; }
+  .mk-foot a:hover { color: var(--accent-ink); }
+  .mk-foot__copy { margin-left: auto; }
+  @media (max-width: 640px) { .mk-foot__copy { margin-left: 0; } .mk-grid { grid-template-columns: 1fr; } }
+</style>
+</head>
+<body>
+
+<!-- ================= 顶栏（与官网一致） ================= -->
+<header class="head">
+  <div class="head__in">
+    <a class="brand" href="../" aria-label="欲蓝财务 首页">
+      <span class="brand__mark">欲蓝财务</span>
+      <span class="brand__en">YULAN</span>
+      <span class="brand__dot" aria-hidden="true"></span>
+    </a>
+    <nav class="nav" aria-label="主导航">
+      <a href="../#features">功能</a>
+      <a href="../#flow">交付流程</a>
+      <a href="../#docs">文档</a>
+      <a href="./" aria-current="page">插件市场</a>
+      <a href="../#download">下载</a>
+    </nav>
+    <span class="head__spacer"></span>
+    <div class="lp-nav-cta">
+      <a class="btn btn--sm btn--ghost" href="https://doc.yulancloud.us.ci/" target="_blank" rel="noopener">文档站</a>
+      <button class="icon-btn" data-theme-toggle type="button" aria-label="切换到暗色模式" title="暗色模式"></button>
+      <a class="lp-gh" href="https://github.com/yulancloud/plugins" target="_blank" rel="noopener" aria-label="插件索引仓库" title="插件索引仓库">
+        <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 .5a11.5 11.5 0 0 0-3.64 22.41c.58.1.79-.25.79-.56v-2.2c-3.22.7-3.9-1.37-3.9-1.37-.53-1.34-1.29-1.7-1.29-1.7-1.05-.72.08-.7.08-.7 1.16.08 1.78 1.2 1.78 1.2 1.04 1.78 2.73 1.27 3.4.97.1-.75.4-1.27.73-1.56-2.57-.29-5.27-1.29-5.27-5.73 0-1.27.45-2.3 1.19-3.11-.12-.29-.52-1.46.11-3.05 0 0 .97-.31 3.18 1.18a11 11 0 0 1 5.8 0c2.2-1.49 3.17-1.18 3.17-1.18.63 1.59.23 2.76.11 3.05.74.81 1.19 1.84 1.19 3.11 0 4.45-2.71 5.43-5.29 5.72.42.36.79 1.07.79 2.16v3.2c0 .31.21.67.8.56A11.5 11.5 0 0 0 12 .5z"/></svg>
+      </a>
+    </div>
+  </div>
+</header>
+
+<main>
+  <!-- ================= Hero ================= -->
+  <section class="mk-wrap mk-hero">
+    <span class="mk-eyebrow">Plugin Market · 插件市场</span>
+    <h1>给商城<em>加功能</em>，<br>不用自己写代码</h1>
+    <p>插件就是按官方「功能自定义」教程做出来的功能包，托管在 GitHub 上，免费开源。下载、解压、放进项目、看一眼效果 —— 全程有小白图文教程。也可以把你自己做的插件传上来分享。</p>
+    <div class="mk-hero__actions">
+      <a class="mk-btn mk-btn--primary" id="submitBtn" href="https://github.com/yulancloud/plugins/issues/new?template=plugin-submit.yml" target="_blank" rel="noopener">
+        <svg viewBox="0 0 24 24"><path d="M12 16V4m0 0L8 8m4-4 4 4M4 16v3a1 1 0 0 0 1 1h14a1 1 0 0 0 1-1v-3"/></svg>
+        上传插件
+      </a>
+      <a class="mk-btn mk-btn--ghost" href="https://doc.yulancloud.us.ci/plugins/install" target="_blank" rel="noopener">
+        <svg viewBox="0 0 24 24"><path d="M4 5.5A2.5 2.5 0 0 1 6.5 3H12v17H6.5A2.5 2.5 0 0 0 4 22.5zM20 5.5A2.5 2.5 0 0 0 17.5 3H12v17h5.5a2.5 2.5 0 0 1 2.5 2.5z"/></svg>
+        如何安装插件（小白教程）
+      </a>
+      <a class="mk-btn mk-btn--ghost" href="https://github.com/yulancloud/plugin-template" target="_blank" rel="noopener">
+        <svg viewBox="0 0 24 24"><path d="M4 4h16v4H4zM4 10h16v10H4zM8 14h8"/></svg>
+        插件开发模板仓库
+      </a>
+    </div>
+  </section>
+
+  <!-- ================= 工具栏 ================= -->
+  <div class="mk-wrap">
+    <div class="mk-toolbar">
+      <label class="mk-search">
+        <svg viewBox="0 0 24 24"><circle cx="11" cy="11" r="7"/><path d="m20 20-3.5-3.5"/></svg>
+        <input id="q" type="search" placeholder="搜插件名称、功能、作者…" autocomplete="off" aria-label="搜索插件">
+      </label>
+      <div class="mk-chips" id="chips" aria-label="按分类筛选"></div>
+    </div>
+    <div class="mk-meta">
+      <span>共 <strong id="count">—</strong> 个插件</span>
+      <span>插件本体托管于 <strong>GitHub</strong></span>
+      <span>索引更新于 <strong id="updated">—</strong></span>
+      <span id="srcNote"></span>
+    </div>
+    <p class="mk-note" id="offlineNote" hidden>在线索引暂时读不到，正在展示内置示例数据。可到 <a href="https://github.com/yulancloud/plugins" target="_blank" rel="noopener">插件索引仓库</a> 查看完整清单。</p>
+
+    <div class="mk-grid" id="grid"><div class="mk-empty">正在读取插件索引…</div></div>
+  </div>
+
+  <!-- ================= 上传三步 ================= -->
+  <section class="mk-sec">
+    <div class="mk-wrap">
+      <div class="mk-sec__head">
+        <h2>做了个功能？三步上架到市场</h2>
+        <p>不需要服务器、不需要数据库。GitHub 的模板仓库负责「一键建仓」，Issue 表单负责「收集提交」，市场页只负责读取清单 —— 这就是插件能一直存在 GitHub 上的原因。</p>
+      </div>
+      <div class="mk-steps">
+        <div class="mk-step">
+          <div class="mk-step__n">1</div>
+          <h3>用模板仓库建插件</h3>
+          <p>在模板仓库点绿色 <strong>Use this template</strong>，一键创建同结构仓库。按「功能自定义」教程加功能，写好 <code>plugin.json</code> 与给小白看的 <code>INSTALL.md</code>。</p>
+          <a href="https://github.com/yulancloud/plugin-template" target="_blank" rel="noopener">打开模板仓库 →</a>
+        </div>
+        <div class="mk-step">
+          <div class="mk-step__n">2</div>
+          <h3>打包 zip 放到自己仓库</h3>
+          <p>跑 <code>./pack.sh</code> 打包，把 zip 上传到你自己 GitHub 仓库的 Release（或仓库内文件），得到一个公开直链。本体始终在你自己的仓库里。</p>
+          <a href="https://doc.yulancloud.us.ci/plugins/submit" target="_blank" rel="noopener">看提交规范 →</a>
+        </div>
+        <div class="mk-step">
+          <div class="mk-step__n">3</div>
+          <h3>点「上传插件」填表单</h3>
+          <p>填名称、简介、zip 直链等信息提交为一个 Issue。审核通过后会合并进索引仓库的 <code>plugins.json</code>，市场页下次加载自动出现。</p>
+          <a href="https://github.com/yulancloud/plugins/issues/new?template=plugin-submit.yml" target="_blank" rel="noopener">提交插件 →</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ================= FAQ ================= -->
+  <section class="mk-sec">
+    <div class="mk-wrap">
+      <div class="mk-sec__head"><h2>装之前，先知道这几件事</h2></div>
+      <div class="mk-faq">
+        <div>
+          <h3>插件是官方做的吗？安全吗？</h3>
+          <p>市场里的插件由社区提交，带「已验证」标记的经过官方人工检查。装之前先看仓库源码与 <code>INSTALL.md</code>，<strong>务必先备份</strong> <code>config/</code> 和 <code>data/shop.sqlite</code>。</p>
+        </div>
+        <div>
+          <h3>装完没效果 / 打不开怎么办？</h3>
+          <p>先看 <a href="https://doc.yulancloud.us.ci/plugins/install" target="_blank" rel="noopener">小白安装教程</a> 的验证与常见问题；运行目录没指向 <code>public/</code> 是最常见的 404 原因，见 <a href="https://doc.yulancloud.us.ci/deploy" target="_blank" rel="noopener">部署总览</a>。</p>
+        </div>
+        <div>
+          <h3>怎么卸载、怎么回滚？</h3>
+          <p>每个插件的 <code>INSTALL.md</code> 都写了卸载步骤：删掉新增文件、撤销合并、恢复版本号即可。出问题时用安装前的备份整体覆盖回去，见 <a href="https://doc.yulancloud.us.ci/deploy/install" target="_blank" rel="noopener">安装与升级</a>。</p>
+        </div>
+      </div>
+    </div>
+  </section>
+</main>
+
+<footer class="mk-foot">
+  <div class="mk-wrap mk-foot__row">
+    <a href="../">← 返回官网</a>
+    <a href="https://doc.yulancloud.us.ci/" target="_blank" rel="noopener">文档站</a>
+    <a href="https://github.com/yulancloud/plugins" target="_blank" rel="noopener">索引仓库</a>
+    <a href="https://github.com/yulancloud/plugin-template" target="_blank" rel="noopener">模板仓库</a>
+    <a href="https://doc.yulancloud.us.ci/developer/custom" target="_blank" rel="noopener">功能自定义教程</a>
+    <span class="mk-foot__copy">© 2026 欲蓝财务 · YULAN · 插件托管于 GitHub</span>
+  </div>
+</footer>
+
+<script>
+(function () {
+  // ---------- 亮暗主题（与官网完全同一套逻辑） ----------
+  var root = document.documentElement;
+  var MOON = '<svg class="ico" viewBox="0 0 24 24" aria-hidden="true"><path d="M20 14.5A8.5 8.5 0 0 1 9.5 4a8.5 8.5 0 1 0 10.5 10.5z"/></svg>';
+  var SUN = '<svg class="ico" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="4.2"/><path d="M12 2.6v2M12 19.4v2M2.6 12h2M19.4 12h2M5.3 5.3l1.4 1.4M17.3 17.3l1.4 1.4M18.7 5.3l-1.4 1.4M6.7 17.3l-1.4 1.4"/></svg>';
+  function preferred() {
+    try { var s = localStorage.getItem('yulan-theme'); if (s === 'dark' || s === 'light') return s; } catch (e) {}
+    return window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';
+  }
+  function apply(t) {
+    root.setAttribute('data-theme', t);
+    var meta = document.querySelector('meta[name="theme-color"]');
+    if (meta) meta.setAttribute('content', t === 'dark' ? '#11141a' : '#f5f6f8');
+    document.querySelectorAll('[data-theme-toggle]').forEach(function (b) {
+      b.innerHTML = t === 'dark' ? SUN : MOON;
+      b.setAttribute('aria-label', t === 'dark' ? '切换到亮色模式' : '切换到暗色模式');
+      b.setAttribute('title', t === 'dark' ? '亮色模式' : '暗色模式');
+    });
+  }
+  apply(preferred());
+  document.addEventListener('click', function (e) {
+    var b = e.target.closest('[data-theme-toggle]'); if (!b) return;
+    var next = root.getAttribute('data-theme') === 'dark' ? 'light' : 'dark';
+    apply(next);
+    try { localStorage.setItem('yulan-theme', next); } catch (err) {}
+  });
+
+  // ---------- 索引数据：两个在线源 + 内置兜底 ----------
+  var SOURCES = [
+    'https://yulancloud.github.io/plugins/plugins.json',
+    'https://raw.githubusercontent.com/yulancloud/plugins/main/plugins.json'
+  ];
+  var FALLBACK = {
+    updated: '2026-11-15',
+    categories: ['示例', '工具', '前台展示', '后台增强', '支付发货', '主题'],
+    submit: 'https://github.com/yulancloud/plugins/issues/new?template=plugin-submit.yml',
+    docs: 'https://doc.yulancloud.us.ci/plugins/install',
+    plugins: [{
+      id: 'hello-world', name: 'Hello 示例插件', version: '1.0.0', author: '欲蓝财务',
+      description: '零依赖示例插件：只新增一个独立页面，装上后访问 /plugins/hello/ 就能看到效果。不改核心文件、不建表、不跑迁移，适合第一次练手安装流程。',
+      category: '示例', tags: ['示例', '新手友好', '零依赖'], icon: '',
+      download: 'https://raw.githubusercontent.com/yulancloud/plugins/main/packages/hello-world-v1.0.0.zip',
+      homepage: 'https://github.com/yulancloud/plugin-template',
+      docs: 'https://doc.yulancloud.us.ci/plugins/install',
+      requires: '>=1.1.0', updated: '2026-11-15', size: '4 KB', verified: true, featured: true
+    }]
+  };
+
+  var DATA = null, CATEGORY = '全部', KEYWORD = '';
+
+  function esc(s) {
+    return String(s == null ? '' : s).replace(/[&<>"']/g, function (c) {
+      return { '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[c];
+    });
+  }
+  function loadOne(i) {
+    if (i >= SOURCES.length) {
+      DATA = FALLBACK;
+      document.getElementById('offlineNote').hidden = false;
+      document.getElementById('srcNote').textContent = '（内置示例数据）';
+      render();
+      return;
+    }
+    fetch(SOURCES[i] + '?t=' + Date.now(), { cache: 'no-store' })
+      .then(function (r) { if (!r.ok) throw new Error('HTTP ' + r.status); return r.json(); })
+      .then(function (j) {
+        if (!j || !Array.isArray(j.plugins)) throw new Error('索引格式不对');
+        DATA = j;
+        document.getElementById('srcNote').textContent = '（索引已同步）';
+        render();
+      })
+      .catch(function () { loadOne(i + 1); });
+  }
+
+  function renderChips() {
+    var cats = (DATA && Array.isArray(DATA.categories) ? DATA.categories.slice() : ['示例']);
+    if (cats.indexOf('全部') !== 0) cats.unshift('全部');
+    var box = document.getElementById('chips');
+    box.innerHTML = cats.map(function (c) {
+      return '<button type="button" class="mk-chip' + (c === CATEGORY ? ' is-on' : '') + '" data-c="' + esc(c) + '">' + esc(c) + '</button>';
+    }).join('');
+  }
+
+  function card(p) {
+    var icon = p.icon
+      ? '<img src="' + esc(p.icon) + '" alt="" loading="lazy" onerror="this.parentNode.textContent=\'' + esc((p.name || '?').charAt(0)) + '\'">'
+      : esc((p.name || '?').charAt(0));
+    var tags = (p.tags || []).map(function (t) { return '<span class="mk-tag">' + esc(t) + '</span>'; }).join('');
+    var badges = (p.verified ? '<span class="mk-badge">✓ 已验证</span>' : '') +
+                 (p.featured ? '<span class="mk-badge mk-badge--hot">推荐</span>' : '');
+    var dl = p.download ? '<a class="dl" href="' + esc(p.download) + '" target="_blank" rel="noopener">下载 v' + esc(p.version) + '</a>' : '<a class="dl" href="' + esc(p.homepage || (DATA && DATA.template) || '#') + '" target="_blank" rel="noopener">查看仓库</a>';
+    var doc = p.docs || (DATA && DATA.docs) || 'https://doc.yulancloud.us.ci/plugins/install';
+    return '<article class="mk-card">' +
+      '<div class="mk-card__top">' +
+        '<div class="mk-card__icon">' + icon + '</div>' +
+        '<div><div class="mk-card__title">' + esc(p.name) + badges + '</div>' +
+        '<div class="mk-card__by">' + esc(p.author) + ' · ' + esc(p.category || '未分类') + ' · 兼容 ' + esc(p.requires || 'v1.1.0+') + '</div></div>' +
+      '</div>' +
+      '<p class="mk-card__desc">' + esc(p.description) + '</p>' +
+      '<div class="mk-tags">' + tags + '</div>' +
+      '<div class="mk-card__links">' + dl + '<a class="doc" href="' + esc(doc) + '" target="_blank" rel="noopener">安装说明</a></div>' +
+      '<div class="mk-card__foot"><span>更新 ' + esc(p.updated || '—') + '</span><span>' + esc(p.size || '') + '</span></div>' +
+    '</article>';
+  }
+
+  function render() {
+    if (!DATA) return;
+    var chipsBox = document.getElementById('chips');
+    if (!chipsBox.children.length) renderChips();
+    var list = DATA.plugins.filter(function (p) {
+      if (CATEGORY !== '全部' && p.category !== CATEGORY) return false;
+      if (!KEYWORD) return true;
+      var hay = [p.name, p.id, p.author, p.description, (p.tags || []).join(' ')].join(' ').toLowerCase();
+      return hay.indexOf(KEYWORD) !== -1;
+    }).sort(function (a, b) {
+      if (!!b.featured !== !!a.featured) return b.featured ? 1 : -1;
+      return String(b.updated || '').localeCompare(String(a.updated || ''));
+    });
+    document.getElementById('count').textContent = list.length;
+    document.getElementById('updated').textContent = DATA.updated || '—';
+    var grid = document.getElementById('grid');
+    grid.innerHTML = list.length
+      ? list.map(card).join('')
+      : '<div class="mk-empty"><h3>没找到匹配的插件</h3><p>换个关键词，或切换到「全部」分类看看。</p></div>';
+    var submit = (DATA && DATA.submit) || FALLBACK.submit;
+    document.getElementById('submitBtn').href = submit;
+  }
+
+  document.getElementById('chips').addEventListener('click', function (e) {
+    var b = e.target.closest('.mk-chip'); if (!b) return;
+    CATEGORY = b.getAttribute('data-c');
+    Array.prototype.forEach.call(this.children, function (x) { x.classList.toggle('is-on', x === b); });
+    render();
+  });
+  document.getElementById('q').addEventListener('input', function () {
+    KEYWORD = this.value.trim().toLowerCase(); render();
+  });
+
+  loadOne(0);
+})();
+</script>
+</body>
+</html>

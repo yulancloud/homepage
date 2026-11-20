@@ -5,7 +5,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <meta name="theme-color" content="#f5f6f8">
 <title>欲蓝财务 · 轻量商城系统与欲蓝财务魔方</title>
-<meta name="description" content="欲蓝财务：基于 PHP + SQLite 的轻量商城系统，内置欲蓝财务魔方产品类型、商品级服务器配置与 Windows 自动建号 APP。含完整后台、易支付、21 页部署与排障文档。">
+<meta name="description" content="欲蓝财务：基于 PHP + SQLite 的轻量商城系统，内置魔方云（KVM 云主机）、魔方财务（对接上游、同步产品、加价销售）、工单系统等商品与功能模块，支付后自动在上游开通并交付。含完整后台、易支付与部署排障文档。">
 <link rel="icon" href="assets/favicon.svg" type="image/svg+xml">
 <link rel="stylesheet" href="assets/style.css">
 <link rel="stylesheet" href="assets/home.css">
@@ -48,16 +48,16 @@
   <section class="hero lp-hero">
     <div class="wrap hero__grid">
       <div class="hero__copy">
-        <span class="lp-badge"><span class="lp-badge__dot" aria-hidden="true"></span>v1.3.0 · 稳定版已发布</span>
-        <p class="lp-v11">本次更新：系统正式改名「欲蓝财务」 · 新增多 API 管理（一条 API 一台 Windows 服务器，商品发货可选） · 在线更新（保留主页设计与设置） · 顶部菜单按钮可显示隐藏并修复换行</p>
+        <span class="lp-badge"><span class="lp-badge__dot" aria-hidden="true"></span>v1.4.0 · 稳定版已发布</span>
+        <p class="lp-v11">本次更新：新增魔方云（KVM 云服务器，支付后自动开通） · 魔方财务改为「对接上游」（同步上游产品、加价销售、上游开通） · 新增工单系统（用户提单、客服受理） · 建号交付全面上移到服务端与上游</p>
 
         <h1 class="display">一套装好就能用的<br><em>轻量商城系统</em></h1>
 
-        <p class="lede">基于 PHP + SQLite，单文件数据库、无需 MySQL。内置「欲蓝财务魔方」产品类型，支持每个商品独立配置服务器，下单后由 Windows APP 自动建号并交付账号。从部署到排障，21 页文档全程覆盖。</p>
+        <p class="lede">基于 PHP + SQLite，单文件数据库、无需 MySQL。内置魔方云、魔方财务（对接上游）等商品类型，支付后自动在上游开通并交付连接信息；配套工单系统。从部署到排障，文档全程覆盖。</p>
 
         <div class="lp-hero__actions">
-          <a class="btn btn--primary" href="https://github.com/yulancloud/yulancloud/releases/download/v1.3.0/yulan-shop-v130.zip">
-            下载系统包 v1.3.0
+          <a class="btn btn--primary" href="https://github.com/yulancloud/yulancloud/releases/download/v1.4.0/yulan-shop-v140.zip">
+            下载系统包 v1.4.0
             <svg class="ico" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 4v11M7.5 10.5 12 15l4.5-4.5M5 19h14"/></svg>
           </a>
           <a class="btn btn--ghost" href="https://doc.yulancloud.us.ci/" target="_blank" rel="noopener">
@@ -92,7 +92,7 @@
             </div>
             <div style="margin-top:14px;font-size:11.5px;color:var(--ink-4);line-height:1.7">口令只存于服务器侧，交付页与响应体均不回显。</div>
           </div>
-          <div class="lp-float"><span class="lp-float__pulse" aria-hidden="true"></span>下单 → 自动建号 → 交付完成</div>
+          <div class="lp-float"><span class="lp-float__pulse" aria-hidden="true"></span>下单支付 → 匹配上游 → 上游开通 → 交付完成</div>
         </div>
       </div>
     </div>
@@ -102,10 +102,10 @@
   <section class="section--tight">
     <div class="wrap">
       <div class="lp-stats">
-        <div class="lp-stat"><div class="lp-stat__v">v1.3.0</div><div class="lp-stat__k">当前稳定版本</div></div>
-        <div class="lp-stat"><div class="lp-stat__v">3 类</div><div class="lp-stat__k">实体 / 虚拟 / 欲蓝魔方商品</div></div>
-        <div class="lp-stat"><div class="lp-stat__v">64 项</div><div class="lp-stat__k">端到端测试断言</div></div>
-        <div class="lp-stat"><div class="lp-stat__v">21 页</div><div class="lp-stat__k">部署 / 后台 / 排障文档</div></div>
+        <div class="lp-stat"><div class="lp-stat__v">v1.4.0</div><div class="lp-stat__k">当前稳定版本</div></div>
+        <div class="lp-stat"><div class="lp-stat__v">4 类</div><div class="lp-stat__k">实体 / 虚拟 / 魔方财务 / 魔方云</div></div>
+        <div class="lp-stat"><div class="lp-stat__v">3 大</div><div class="lp-stat__k">魔方云 / 对接上游 / 工单</div></div>
+        <div class="lp-stat"><div class="lp-stat__v">全套</div><div class="lp-stat__k">部署 / 后台 / 排障文档</div></div>
       </div>
     </div>
   </section>
@@ -123,24 +123,24 @@
 
       <div class="lp-feats">
         <article class="lp-feat">
-          <span class="lp-feat__ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m12 2 2.4 5.2 5.6.7-4.1 3.9 1 5.6-4.9-2.7-4.9 2.7 1-5.6L4 7.9l5.6-.7L12 2z"/></svg></span>
-          <h3 class="h3">欲蓝财务魔方</h3>
-          <p>独立的第三类商品类型。下单支付后自动生成 Windows 账号并交付连接地址、账号与权限，口令不出现在页面与接口响应中。</p>
-          <span class="lp-feat__tag">自动建号 · 整单回滚</span>
-        </article>
-
-        <article class="lp-feat">
-          <span class="lp-feat__ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3.5" y="4" width="17" height="6.5" rx="2"/><rect x="3.5" y="13.5" width="17" height="6.5" rx="2"/><path d="M7 7.2h.01M7 16.8h.01M11 7.2h5M11 16.8h5"/></svg></span>
-          <h3 class="h3">商品级服务器</h3>
-          <p>每个商品可单独配置 IP、端口、账号、口令与连接地址；留空则回退到全局默认。多实例、多口令互不干扰。</p>
-          <span class="lp-feat__tag">每商品独立配置</span>
-        </article>
-
-        <article class="lp-feat">
           <span class="lp-feat__ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="4.5" width="18" height="13" rx="2"/><path d="M8 21h8M12 17.5V21M7 9h10M7 12.5h6"/></svg></span>
-          <h3 class="h3">Windows APP（Go 单文件）</h3>
-          <p>编译成免环境 exe，无需安装 Python 或运行时。仅管理员账号可运行、日志按 ACL 隔离、自动 UAC 提权，建号命令参数化执行。</p>
-          <span class="lp-feat__tag">免环境 · 管理员门禁</span>
+          <h3 class="h3">魔方云（KVM）</h3>
+          <p>对接魔方云 RESTful API，支付后自动创建云主机并交付 IP、系统、配置与一次性密码；用户可自助开机、关机、重启、重置密码。</p>
+          <span class="lp-feat__tag">自动开云主机 · 自助管理</span>
+        </article>
+
+        <article class="lp-feat">
+          <span class="lp-feat__ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 7h16v5H4zM4 14h16v4H4z"/><path d="M8 9.5h0M8 16h0M12 9.5h5M12 16h5"/></svg></span>
+          <h3 class="h3">魔方财务 · 对接上游</h3>
+          <p>像智简魔方财务那样对接上游：可维护多条命名上游、同步上游产品目录、加价销售，订单支付后自动在上游创建订单开通，账号与连接信息直接交付到用户中心。</p>
+          <span class="lp-feat__tag">同步产品 · 加价销售 · 上游开通</span>
+        </article>
+
+        <article class="lp-feat">
+          <span class="lp-feat__ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 5.5h16v10H8l-4 3.5z"/><path d="M8 9h8M8 12h5"/></svg></span>
+          <h3 class="h3">工单系统</h3>
+          <p>用户可提交工单、追加回复、关联订单；后台客服受理、回复与客户状态流转。严格归属校验，用户只能看到自己的工单。</p>
+          <span class="lp-feat__tag">用户提单 · 客服受理</span>
         </article>
 
         <article class="lp-feat">
@@ -166,9 +166,9 @@
 
         <article class="lp-feat">
           <span class="lp-feat__ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="4" width="18" height="16" rx="2"/><path d="M3 9h18M8 13h4M8 16.5h7"/></svg></span>
-          <h3 class="h3">用户控制台（v1.2 新增）</h3>
-          <p>用户中心多出一个控制台，展示「我的欲蓝魔方商品」。进入详情即可修改登录用户名与密码，由管理员令牌下发到 Windows APP 强制改号，口令不落库、不进日志明文。</p>
-          <span class="lp-feat__tag">改用户名 / 密码 · 审计留痕</span>
+          <h3 class="h3">用户中心（v1.4 增强）</h3>
+          <p>用户中心包含我的订单、控制台、我的云主机、工单、余额与账户设置。云主机可自助管理；工单可提单与查看回复。所有敏感信息按归属隔离，口令不落库、不进日志明文。</p>
+          <span class="lp-feat__tag">云主机管理 · 工单 · 归属隔离</span>
         </article>
 
         <article class="lp-feat">
@@ -190,11 +190,11 @@
           <h2 class="h2">买家付完款，剩下的系统自己做完</h2>
         </div>
       </div>
-      <div class="lp-flow">
-        <div class="lp-step"><div class="lp-step__no">01</div><h3>下单并支付</h3><p>买家选购欲蓝魔方商品，¥0 商品免费直付，其余走易支付并等待验签回调。</p></div>
-        <div class="lp-step"><div class="lp-step__no">02</div><h3>网站请求建号</h3><p>服务端按商品级服务器配置，用 Bearer 令牌调用对应 Windows APP 实例。</p></div>
-        <div class="lp-step"><div class="lp-step__no">03</div><h3>APP 创建账号</h3><p>参数化执行建号命令，账号经白名单校验；失败则整单回滚，不留半成品。</p></div>
-        <div class="lp-step"><div class="lp-step__no">04</div><h3>交付页展示</h3><p>展示连接地址、账号与角色；口令只在服务器侧持有，不写进页面与日志明文。</p></div>
+        <div class="lp-flow">
+        <div class="lp-step"><div class="lp-step__no">01</div><h3>下单并支付</h3><p>买家选购魔方云 / 魔方财务商品，¥0 商品免费直付，其余走易支付或余额支付并等待验签回调。</p></div>
+        <div class="lp-step"><div class="lp-step__no">02</div><h3>匹配上游</h3><p>服务端按商品绑定的上游与上游产品，使用 API 密钥请求对应的上游接口。</p></div>
+        <div class="lp-step"><div class="lp-step__no">03</div><h3>上游自动开通</h3><p>在上游创建订单 / 云主机并用余额付款，拿到 IP、账号与一次性密码；失败则支付回滚。</p></div>
+        <div class="lp-step"><div class="lp-step__no">04</div><h3>交付与自助管理</h3><p>交付页展示连接信息，密码仅此一份；用户可在「我的云主机」自助管理，遇到问题提交工单。</p></div>
       </div>
     </div>
   </section>
@@ -205,7 +205,7 @@
       <div class="lp-doc">
         <div>
           <p class="eyebrow eyebrow--accent">DOCUMENTATION · 文档站</p>
-          <h2 class="h2">部署、后台、排障，写成了 21 页说明书</h2>
+          <h2 class="h2">部署、后台、排障，写成了整套说明书</h2>
           <p>Nginx 与 Apache 分开讲（前者要填伪静态，后者用自带 <code>.htaccess</code> 免配置）；后台逐项教程、按症状速查的故障排查、面向交付的 31 项上线自检清单，都按真实踩过的坑整理。</p>
           <div class="lp-doc__actions">
             <a class="btn btn--primary" href="https://doc.yulancloud.us.ci/" target="_blank" rel="noopener">打开文档站 <svg class="ico" viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12h13M13 6.8 18.2 12 13 17.2"/></svg></a>
@@ -229,31 +229,31 @@
       <div class="sec-head">
         <div class="sec-head__left">
           <p class="eyebrow eyebrow--accent">DOWNLOAD · 下载</p>
-          <h2 class="h2">系统包与 Windows APP，分开下载</h2>
+          <h2 class="h2">一个系统包，部署即用</h2>
         </div>
-        <p class="lede lp-sec-desc">两个仓库各司其职：主仓库放系统源码与系统包，APP 仓库放 Windows 端 exe。</p>
+        <p class="lede lp-sec-desc">v1.4 起魔方财务改为对接上游、魔方云通过 API 开通，建号与交付全程在服务端完成。下载系统包后按文档配置上游即可。</p>
       </div>
 
       <div class="lp-cards">
         <article class="lp-card">
-          <div class="lp-card__k">MAIN SYSTEM · v1.3.0</div>
+          <div class="lp-card__k">MAIN SYSTEM · v1.4.0</div>
           <h3>欲蓝财务商城系统包</h3>
-          <p>完整 PHP + SQLite 商城源码，系统正式定名「欲蓝财务」。v1.3 新增多 API 管理（后台可建多条命名 API，每条指向一台 Windows 服务器，商品发货时指定使用哪条）、后台一键在线更新（自动保留你的主页设计、设置、商品订单与已装主题插件）、顶部菜单按钮可显示/隐藏并修复换行；同时修复「APP 返回异常」难排查问题（服务器 IP 填错会给出明确诊断）。沿用控制台、后台主题插件上传，干净安装默认 0 分类 0 商品。</p>
-          <div class="lp-card__meta"><span>yulan-shop.zip</span><span>约 0.6 MB</span><span>PHP 8.3</span><span>含 Nginx 配置样例</span></div>
+          <p>完整 PHP + SQLite 商城源码。v1.4 新增魔方云（KVM 云主机，支付后自动开通、用户自助开关机/重启/重置密码）、魔方财务改为对接上游（维护多条上游、同步上游产品、加价销售、上游开通）、工单系统（用户提单、客服受理回复）。所有开通与交付均通过上游 API 在服务端完成，无需任何本地客户端程序。保留在线更新、顶部菜单开关、后台主题插件上传等既有能力，干净安装默认 0 分类 0 商品。</p>
+          <div class="lp-card__meta"><span>yulan-shop-v140.zip</span><span>约 0.6 MB</span><span>PHP 8.3</span><span>含 Nginx 配置样例</span></div>
           <div class="lp-card__actions">
-            <a class="btn btn--primary" href="https://github.com/yulancloud/yulancloud/releases/download/v1.3.0/yulan-shop-v130.zip">下载 ZIP <svg class="ico" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 4v11M7.5 10.5 12 15l4.5-4.5M5 19h14"/></svg></a>
-            <a class="btn btn--ghost" href="https://github.com/yulancloud/yulancloud/releases/tag/v1.3.0" target="_blank" rel="noopener">Release 说明</a>
+            <a class="btn btn--primary" href="https://github.com/yulancloud/yulancloud/releases/download/v1.4.0/yulan-shop-v140.zip">下载 ZIP <svg class="ico" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 4v11M7.5 10.5 12 15l4.5-4.5M5 19h14"/></svg></a>
+            <a class="btn btn--ghost" href="https://github.com/yulancloud/yulancloud/releases/tag/v1.4.0" target="_blank" rel="noopener">Release 说明</a>
           </div>
         </article>
 
         <article class="lp-card">
-          <div class="lp-card__k">WINDOWS APP · v1.3.0</div>
-          <h3>欲蓝财务魔方 Windows APP</h3>
-          <p>Go 编译的单文件 exe，无需安装 Python 或任何运行时。Python 版打包（自带运行环境，免安装），单文件 exe 双击即用；v1.3 用 UAC 提权 + 多重管理员判定彻底解决「已是管理员仍闪退」；日志 ACL 隔离、口令脱敏，支持管理员强制改用户名/密码，配合商城控制台改号。</p>
-          <div class="lp-card__meta"><span>yulan_cube_app.exe</span><span>约 7.4 MB</span><span>Windows x64</span><span>免环境</span></div>
+          <div class="lp-card__k">REQUIREMENTS · 运行要求</div>
+          <h3>部署环境与上游</h3>
+          <p>服务端：PHP 8.3 + SQLite（无需 MySQL），支持 Nginx / Apache / 宝塔，运行目录指向 public。魔方云与魔方财务需在后台配置上游接口地址、账号与 API 密钥；对接魔方云 KVM 或上游魔方财务系统后即可自动开通，交付信息由服务端回传用户中心。</p>
+          <div class="lp-card__meta"><span>PHP 8.3</span><span>SQLite</span><span>上游 API</span><span>可选 mock 模式演示</span></div>
           <div class="lp-card__actions">
-            <a class="btn btn--primary" href="https://github.com/yulancloud/yulancloudRubik-Windows/releases/download/v1.3.0/yulan_cube_app.exe">下载 EXE <svg class="ico" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 4v11M7.5 10.5 12 15l4.5-4.5M5 19h14"/></svg></a>
-            <a class="btn btn--ghost" href="https://github.com/yulancloud/yulancloudRubik-Windows" target="_blank" rel="noopener">APP 仓库</a>
+            <a class="btn btn--primary" href="https://doc.yulancloud.us.ci/yulan-guide/" target="_blank" rel="noopener">魔方使用教程 <svg class="ico" viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12h13M13 6.8 18.2 12 13 17.2"/></svg></a>
+            <a class="btn btn--ghost" href="https://doc.yulancloud.us.ci/" target="_blank" rel="noopener">全部文档</a>
           </div>
         </article>
       </div>
@@ -319,7 +319,7 @@
         </a>
         <p style="margin:16px 0 0;font-size:13px;color:var(--ink-3);line-height:1.85;max-width:320px">基于 PHP + SQLite 的轻量商城系统，内置欲蓝财务魔方产品类型与商品级服务器配置。</p>
         <div class="lp-foot-cta">
-          <a class="btn btn--sm btn--primary" href="https://github.com/yulancloud/yulancloud/releases/download/v1.3.0/yulan-shop-v130.zip">下载系统包</a>
+          <a class="btn btn--sm btn--primary" href="https://github.com/yulancloud/yulancloud/releases/download/v1.4.0/yulan-shop-v140.zip">下载系统包</a>
           <a class="btn btn--sm btn--ghost" href="https://doc.yulancloud.us.ci/" target="_blank" rel="noopener">文档站</a>
         </div>
       </div>
@@ -337,9 +337,8 @@
         <h4>仓库</h4>
         <div class="lp-foot-links">
           <a href="https://github.com/yulancloud/yulancloud" target="_blank" rel="noopener">主仓库 · 系统源码与系统包</a>
-          <a href="https://github.com/yulancloud/yulancloudRubik-Windows" target="_blank" rel="noopener">Windows APP · exe 下载</a>
           <a href="https://github.com/yulancloud/doc" target="_blank" rel="noopener">文档站源码</a>
-          <a href="https://github.com/yulancloud/yulancloud/releases/tag/v1.3.0" target="_blank" rel="noopener">v1.3.0 Release</a>
+          <a href="https://github.com/yulancloud/yulancloud/releases/tag/v1.4.0" target="_blank" rel="noopener">v1.4.0 Release</a>
         </div>
       </div>
     </div>
